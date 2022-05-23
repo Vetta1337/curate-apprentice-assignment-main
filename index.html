@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
 
-        </style>
-    </head>
-    <body>
-        <div id="main">
-            <div id="message">
-                <input id="message-input">
-                <button onclick="send()">Send</button>
-            </div>
-            <div id="log"></div>
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .box {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            border: 5px solid #FFFF00;
+            padding: 10px;
+        }
+
+        #log {
+            position: fixed;
+            border: 5px solid red;
+            top: 60%;
+            height: 50%;
+            width: 50%;
+            white-space: pre;
+        }
+
+        #main {}
+    </style>
+</head>
+
+<body>
+    <div class="box" id="main">
+        <div id="message">
+            <input id="message-input">
+            <button onclick="send()">Send</button>
         </div>
-        <script type="text/javascript">
-            function send() {
-                const message = document.getElementById("message-input").value;
-                const newChildToAdd = document.createTextNode(message);
-                document.getElementById("log").appendChild(newChildToAdd);
+    </div>
+    <div class="box" id="log">Chat box: <br></div>
+    <script type="text/javascript">
+        var elem = document.getElementById("message-input");
+        elem.onkeyup = function (e) {
+            if (e.keyCode == 13) {
+                send();
             }
-        </script>
-    </body>
+        }
+
+
+        function send() {
+            const message = document.getElementById("message-input").value;
+            console.log(message.toLowerCase());
+            const reply = "test";
+
+            if (message.toLowerCase().includes('hei' || 'hello')) {
+                console.log("true")
+            } else {
+                console.log("false")
+            }
+
+
+
+            const newChildToAdd = document.createTextNode("You: " + message + "\n");
+            const botReply = document.createTextNode("Bot: " + reply + "\n");
+            document.getElementById("log").appendChild(newChildToAdd);
+            document.getElementById("log").appendChild(botReply);
+
+
+        }
+    </script>
+</body>
+
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="message">
+                <input id="message-input">
+                <button onclick="send()">Send</button>
+            </div>
+            <div id="log"></div>
+        </div>
+        <script type="text/javascript">
+            function send() {
+                const message = document.getElementById("message-input").value;
+                const newChildToAdd = document.createTextNode(message);
+                document.getElementById("log").appendChild(newChildToAdd);
+            }
+        </script>
+    </body>
+</html>

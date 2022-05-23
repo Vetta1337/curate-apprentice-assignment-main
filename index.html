@@ -32,37 +32,52 @@
 <body>
     <div class="box" id="main">
         <div id="message">
-            <input id="message-input">
+            <input id="message-input" value="Hello!">
             <button onclick="send()">Send</button>
         </div>
     </div>
     <div class="box" id="log">Chat box: <br></div>
     <script type="text/javascript">
-        var elem = document.getElementById("message-input");
+        var elem = document.getElementById("message-input"); // Checks for enter press
         elem.onkeyup = function (e) {
             if (e.keyCode == 13) {
                 send();
             }
         }
 
-
         function send() {
-            const message = document.getElementById("message-input").value;
-            console.log(message.toLowerCase());
-            const reply = "test";
+            const message = {
+                text: document.getElementById("message-input").value // Gets value of input
+            }
+            const newChildToAdd = document.createTextNode("You: " + message.text + "\n");
+            message.text = message.text.toLowerCase();
+            console.log(message.text); // Logs the message.
+            const reply = {
+                text: 'No Answer' // If the bot does not have an instructions to answer, it will answer "No Answar"
+            };
 
-            if (message.toLowerCase().includes('hei' || 'hello')) {
-                console.log("true")
-            } else {
-                console.log("false")
+
+            const greeting = message.text.includes("hello") || message.text.includes("hi") || message.text.includes(
+                'howdy'); // Checks for greetings, pretty cumbersome, maybe there is an easier solution?
+            console.log("Greeting = " + greeting) // Logs if there is a greeting or not.
+
+            const farewell = message.text.includes("hade") || message.text.includes("goodbye") || message.text.includes(
+                'bye'); // Checks for farewells, pretty cumbersome, maybe there is an easier solution?
+            console.log("Greeting = " + greeting) // Logs if there is a farewells or not.
+
+
+            if (greeting) {
+                reply.text = 'Hello!'; // Replies "Hello!" if an greeting is found.
+            }
+
+            if (farewell) {
+                reply.text = 'Farewell!'; // Replies "Farewell!" if an farewells is found.
             }
 
 
-
-            const newChildToAdd = document.createTextNode("You: " + message + "\n");
-            const botReply = document.createTextNode("Bot: " + reply + "\n");
-            document.getElementById("log").appendChild(newChildToAdd);
-            document.getElementById("log").appendChild(botReply);
+            const botReply = document.createTextNode("Bot: " + reply.text + "\n");
+            document.getElementById("log").appendChild(newChildToAdd); // Appends user message.
+            document.getElementById("log").appendChild(botReply); // Appends bot message.
 
 
         }

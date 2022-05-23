@@ -27,8 +27,6 @@
             width: 50%;
             white-space: pre;
         }
-
-        #main {}
     </style>
 </head>
 
@@ -41,6 +39,9 @@
     </div>
     <div class="box" id="log">Chat box: <br></div>
     <script type="text/javascript">
+        const farewellsArr = ['Bye', 'Bye bye!', 'See you later!', 'Adios!', 'Hade!'] // Arrays for Farewells
+        const greetingsArr = ['Hei', 'Hi!', 'Hello', 'Hola!', 'Bonjour!'] // Arrays for Greetings  
+
         var elem = document.getElementById("message-input"); // Checks for enter press
         elem.onkeyup = function (e) {
             if (e.keyCode == 13) {
@@ -54,7 +55,7 @@
             }
             const newChildToAdd = document.createTextNode("You: " + message.text + "\n");
             message.text = message.text.toLowerCase();
-            console.log(message.text); // Logs the message.
+            console.log("Message: " + message.text); // Logs the message.
             const reply = {
                 text: 'No Answer' // If the bot does not have an instructions to answer, it will answer "No Answar"
             };
@@ -62,19 +63,21 @@
 
             const greeting = message.text.includes("hello") || message.text.includes("hi") || message.text.includes(
                 'howdy'); // Checks for greetings, pretty cumbersome, maybe there is an easier solution?
-            console.log("Greeting = " + greeting) // Logs if there is a greeting or not.
+            console.log("Greeting: " + greeting) // Logs if there is a greeting or not.
 
             const farewell = message.text.includes("hade") || message.text.includes("goodbye") || message.text.includes(
                 'bye'); // Checks for farewells, pretty cumbersome, maybe there is an easier solution?
-            console.log("Greeting = " + greeting) // Logs if there is a farewells or not.
+            console.log("Farewell: " + farewell) // Logs if there is a farewells or not.
 
 
             if (greeting) {
-                reply.text = 'Hello!'; // Replies "Hello!" if an greeting is found.
+                const randomIndex = Math.floor(Math.random() * greetingsArr.length) // Picks a random greeting from array.
+                reply.text = greetingsArr[randomIndex]; // Replies random greeting.
             }
 
             if (farewell) {
-                reply.text = 'Farewell!'; // Replies "Farewell!" if an farewells is found.
+                const randomIndex = Math.floor(Math.random() * farewellsArr.length) // Picks a random farewell from array.
+                reply.text = farewellsArr[randomIndex]; // Replies random farewell.
             }
 
 

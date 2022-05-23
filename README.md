@@ -24,4 +24,5 @@ Update this part of the readme with your notes on what you did - ideally describ
 - New line/Seperate bot reply
 - Enter button function
 - Cumbersome reply checker, tips?
-- Favicon + Title
+- Favicon + title
+- Arrays
